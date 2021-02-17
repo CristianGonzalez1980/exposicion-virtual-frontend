@@ -25,9 +25,10 @@ const AddBanner = () => {
     if (postear) {
       postearAdd();
     }
-  },[url, postear]);
+  },[url]);
 
-  const agregarBanner = () => {
+  const agregarBanner = (e) => {
+    e.preventDefault();
     const asubir = image;
     console.log(asubir)
     uploadImage({ image: asubir, fx: setUrl });
@@ -85,8 +86,8 @@ const AddBanner = () => {
             </form>
             <div class="row">
               <div class="col s12">
-                <button onClick={() => {
-                  agregarBanner();
+                <button onClick={(e) => {
+                  agregarBanner(e);
                   if (image &&
                     category && url) {
                     postearAdd();
