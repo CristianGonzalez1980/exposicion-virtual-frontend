@@ -48,27 +48,31 @@ const AddProduct = (props) => {
           for (let index = 0; index < images.length; index++) {
             const image = images[index];
     */
-    console.log(images[0])
-    uploadImage({ image: images[0], fx: setUrlTemp });
-    // while (!urlTemp) {  }
-    //listimages.push(url)
+    if (images !== null) {
+      console.log(images[0])
+      uploadImage({ image: images[0], fx: setUrlTemp });
+      // while (!urlTemp) {  }
+      //listimages.push(url)
 
-    // if (index === (images.length - 1)) {
-    //setUrlList(listimages);
-    //setUrl(listimages)
-    //postearAdd(url);
-    setpostear(true);
-    /*//   }
-    //}
+      // if (index === (images.length - 1)) {
+      //setUrlList(listimages);
+      //setUrl(listimages)
+      //postearAdd(url);
+      setpostear(true);
+    } else {
+
+      M.toast({ html: "Cargar una imagen para el producto", classes: "#c62828 red darken-3" });
     }
-    for (let index = 0; index < listimages.length; index++) {
+    /*}
+  }
+  for (let index = 0; index < listimages.length; index++) {
     console.log(listimages[index]);
-    }*/
+  }*/
   };
 
   const postearAdd = () => {
     console.log(urlTemp)
-    const imagesToSave = [urlTemp] 
+    const imagesToSave = [urlTemp]
     console.log(imagesToSave)
     console.log(itemName);
     console.log(stock);
@@ -78,20 +82,20 @@ const AddProduct = (props) => {
     console.log(longitud);
     console.log(alto);
     console.log(ancho);
-   // console.log(url);
-  //  console.log(url.length > 0);
-  //  console.log(url.length);
+    // console.log(url);
+    //  console.log(url.length > 0);
+    //  console.log(url.length);
     console.log("entreaPostearAdd")
 
-  //  var someNull = url.some(function (el) {
- //     return el === null;
-  //  });
+    var someNull = url.some(function (el) {
+      return el === null;
+    });
 
 
- //   console.log(someNull);
+    //   console.log(someNull);
 
 
-    if (itemName && description && stock && itemPrice && promotionalPrice /*&& !someNull */&& longitud
+    if (itemName && description && stock && itemPrice && promotionalPrice && !someNull && longitud
       && ancho && alto && pesoGr && imagesToSave.length > 0) {
       postearAddEntity({
         historyProp: history, entityClass: "products", atributes: {

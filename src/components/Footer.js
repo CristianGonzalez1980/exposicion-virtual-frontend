@@ -61,12 +61,16 @@ const Footer = () => {
           <div className='row'>
             <div className='col s12'>
               © 2020 Copyright Expo Arte Virtual
-          </div>
+            </div>
             <div className='col s12'>
-              <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
-              <a href="https://api.whatsapp.com/send?phone=5491123869642&text=Hola!" class="float" target="_blank">
-                <i class="fa fa-whatsapp my-float"></i>
-              </a>
+              <div class="float-btn float-right float-bottom">
+                <span tabIndex="0" data-toggle="tooltip" data-placement="top" data-trigger="hover" title="Estamos en WhatsApp. Consultanos!">
+                  <a id="float-btn-action" class="float-fab float-btn-large fl-circle" href="https://api.whatsapp.com/send?phone=5491123869642&text=Hola!" target="_blank">
+                    <i class="fa fa-whatsapp">
+                    </i>
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
