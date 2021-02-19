@@ -29,7 +29,7 @@ nav {
 }
 
 #imgLogo {
-  width: 30%;
+  width: 46%;
 }
 
 #iconSearch {
@@ -84,3 +84,12 @@ nav {
   outline-offset:-2px;
   color: white;
  }
+
+ .sidenav li > a {
+  color: rgb(255, 255, 255);
+  background-color: #cb1f30;
+}
+
+.sidenav {
+  background-color: #d62234;
+}
