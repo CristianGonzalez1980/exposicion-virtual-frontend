@@ -1,6 +1,8 @@
 //import { useHistory } from "react-router-dom";
 import M from 'materialize-css'
 
+const apiServer = "https://exposicion-virtual.herokuapp.com" //"http://localhost:7000"
+
 const postearUpdateEntity = (props) => {
     const history = props.historyProp
     const entityClass = props.entityClass
@@ -9,7 +11,7 @@ const postearUpdateEntity = (props) => {
 
     console.log(entityClass)
 
-    fetch(`https://exposicion-virtual.herokuapp.com/${entityClass}/${entity.id}`, {
+    fetch(`${apiServer}/${entityClass}/${entity.id}`, {
         method: "PUT",
         headers: {
             "Content-type": "application/json",
@@ -54,7 +56,7 @@ const postearAddEntity = (props) => {
     const entityClass = props.entityClass
     const atributes = props.atributes
 
-    fetch(`https://exposicion-virtual.herokuapp.com/${entityClass}`, {
+    fetch(`${apiServer}/${entityClass}`, {
         method: "POST",
         headers: {
             "Content-type": "application/json",
@@ -87,34 +89,49 @@ const postearDeleteEntity = (props) => {
     const entityClass = props.entityClass
     const id = props.id
 
-    fetch(`https://exposicion-virtual.herokuapp.com/${entityClass}/${id}`, {
+    fetch(`${apiServer}/${entityClass}/${id}`, {
         method: 'DELETE',
         headers: {
         }
-    }).then((res) => res.json())
-        .then((data) => {
-            if (data.error) {
-                M.toast({
-                    html: data.error, classes: "#c62828 red darken-3"
-                });
-            } else {
-                M.toast({
-                    html: `${entityClass} eliminado exitosamente`,
-                    classes: "#388e3c green darken-2",
-                });
-                history.push("/admin");
-            }
-        })
+        /*     }).then((res) => res.json())
+                .then((data) => {
+                    if (data.error) {
+                        M.toast({
+                            html: data.error, classes: "#c62828 red darken-3"
+                        });
+                    } else {
+                        M.toast({
+                            html: `${entityClass} eliminado exitosamente`,
+                            classes: "#388e3c green darken-2",
+                        });
+                        history.push("/admin");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                }); */
+    }).then((res) => {
+        console.log(res)
+        if (res.ok) {
+            M.toast({
+                html: `${entityClass} eliminado exitosamente`,
+                classes: "#388e3c green darken-2",
+            });
+            history.push("/admin");
+        } else {
+            M.toast({ html: res.statusText, classes: "#c62828 red darken-3" });
+        }
+    })
         .catch((err) => {
             console.log(err);
-        });
-}
+        })
+};
 
 const postearGetEntity = (props) => {
     const entityClass = props.entityClass
     const functionD = props.fx
 
-    fetch(`https://exposicion-virtual.herokuapp.com/${entityClass}`, {
+    fetch(`${apiServer}/${entityClass}`, {
         headers: {
         }
     })
